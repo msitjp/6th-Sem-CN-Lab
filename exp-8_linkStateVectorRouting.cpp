@@ -1,5 +1,6 @@
-#include <stdio.h>
+#include <iostream>
 #define infinity 999
+using namespace std;
 
 void dij(int n,int v,int cost[10][10],int dist[],int nxt_node[])
 {
@@ -30,17 +31,17 @@ void dij(int n,int v,int cost[10][10],int dist[],int nxt_node[])
  }
 }
 
-void main()
+int main()
 {
  int no_of_routers,v,i,j,cost[10][10],dist[10],nxt_router[10];
- 
- printf("\n Enter the number of routers:");
- scanf("%d",&no_of_routers);
- printf("\n Enter the cost matrix:\n");
+
+ cout<<"\n Enter the number of routers:";
+ cin>>no_of_routers;
+ cout<<"\n Enter the cost matrix:\n";
  for(i=1;i<=no_of_routers;i++)
   for(j=1;j<=no_of_routers;j++)
   {
-   scanf("%d",&cost[i][j]);
+   cin>>cost[i][j];
    if(cost[i][j]==0)
     cost[i][j]=infinity;
   }
@@ -48,12 +49,13 @@ void main()
  for(v=1;v<=no_of_routers;v++)
 {
  dij(no_of_routers,v,cost,dist,nxt_router);
- printf("\n Routing Table for Router %d\n",v);
- printf("NODE \t COST \t Next Router\n\n");
+ cout<<"\n Routing Table for Router "<<v<<"\n";
+ cout<<"NODE \t COST \t Next Router\n\n";
  for(i=1;i<=no_of_routers;i++)
-  {if(i==v) printf(" %d\t  %d\t  -\n",i,0);
-  else if(nxt_router[i]==-1) printf(" %d\t  %d\t  -\n",i,dist[i]);
-  else printf(" %d\t  %d\t  %d\n",i,dist[i],nxt_router[i]);
+  {if(i==v) cout<<" "<<i<<"\t  0\t  -\n";
+  else if(nxt_router[i]==-1) cout<<" "<<i<<"\t  "<<dist[i]<<"\t  -\n";
+  else cout<<" "<<i<<"\t  "<<dist[i]<<"\t  "<<nxt_router[i]<<"\n";
   }
 }
+return 0;
 }
